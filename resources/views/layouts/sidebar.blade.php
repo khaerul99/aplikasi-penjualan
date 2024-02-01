@@ -98,6 +98,11 @@
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Baru</span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('member.index')}}">
+                    <i class="fa fa-credit-card"></i> <span>Kasbon</span>
+                </a>
+            </li>
             @endif
         </ul>
     </section>
