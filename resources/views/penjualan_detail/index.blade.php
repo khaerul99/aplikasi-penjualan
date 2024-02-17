@@ -33,7 +33,7 @@
 
 @section('breadcrumb')
     @parent
-    <li class="active">Transaksi Penjaualn</li>
+    <li class="active">Transaksi Penjaualan</li>
 @endsection
 
 @section('content')
@@ -101,6 +101,15 @@
                                             <button onclick="tampilMember()" class="btn btn-info btn-flat" type="button"><i class="fa fa-arrow-right"></i></button>
                                         </span>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-lg-2 control-label">Pembelian</label>
+                                <div class="col-lg-8  border border-primary">
+                                    <select name="" id="" class="form-control">
+                                        <option value="">kasbon</option>
+                                        <option value="">Cach</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">

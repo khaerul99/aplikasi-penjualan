@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     SettingController,
     SupplierController,
     UserController,
+    KasbonController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -64,9 +65,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
         Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->name('penjualan.show');
         Route::delete('/penjualan/{id}', [PenjualanController::class, 'destroy'])->name('penjualan.destroy');
-    });
 
-    Route::group(['middleware' => 'level:1,0'], function () {
+
+        // Route::get('/kasbon', [KasbonController::class, 'index'])->name('kasbon.index');
+    });
+    
+    Route::group(['middleware' => 'level:1,2'], function () {
         Route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
         Route::post('/member/cetak-member', [MemberController::class, 'cetakMember'])->name('member.cetak_member');
         Route::resource('/member', MemberController::class);
@@ -97,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     });
  
-    Route::group(['middleware' => 'level:1,0'], function () {
+    Route::group(['middleware' => 'level:1,2'], function () {
         Route::get('/profil', [UserController::class, 'profil'])->name('user.profil');
         Route::post('/profil', [UserController::class, 'updateProfil'])->name('user.update_profil');
     });
