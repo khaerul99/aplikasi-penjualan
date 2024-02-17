@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar Penjualan
+    Daftar Penjualan Kasbon
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Penjualan</li>
+    <li class="active">Daftar Penjualan Kasbon</li>
 @endsection
 
 @section('content')
@@ -33,7 +33,8 @@
         </div>
     </div>
 
-    @includeIf('penjualan.detail')
+    @includeIf('penjualankasbon.detail')
+    @includeIf('penjualankasbon.edit')
 @endsection
 
 @push('scripts')
@@ -47,7 +48,7 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('penjualan.data') }}',
+                    url: '{{ route('datakasbon') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
@@ -135,6 +136,39 @@
                         return;
                     });
             }
+        }
+
+        function showEditStatusModal(id) {
+            $('#editStatusModal').modal('show');
+            $('#editStatusModal').data('id', id);
+        }
+
+        function updateStatus() {
+            var newStatus = $('#statusSelect').val();
+            var id = $('#editStatusModal').data('id');
+
+            $.ajax({
+                url: '/penjualan/editstatus/' + id,
+                type: 'POST',
+                data: {
+                    status: newStatus,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Status penjualan berhasil diperbarui!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    table.ajax.reload();
+                    $('#editStatusModal').modal('hide');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert('Gagal mengubah status penjualan.');
+                }
+            });
         }
     </script>
 @endpush

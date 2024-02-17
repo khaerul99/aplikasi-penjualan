@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{
     DashboardController,
+    KasbonController,
     KategoriController,
     LaporanController,
     ProdukController,
@@ -36,6 +37,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['middleware' => 'level:1'], function () {
+        Route::get('/datakasbon', [KasbonController::class, 'data'])->name('datakasbon');
+        Route::get('/kasbon', [KasbonController::class, 'index'])->name('indexkasbon');
+        Route::post('/penjualan/editstatus/{id}', [KasbonController::class, 'updateStatus'])->name('penjualan.updatestatus');
+        Route::get('/kasbon/{id}', [KasbonController::class, 'showkasbon'])->name('penjualan.showkasbon');
+        Route::delete('/kasbon/{id}', [KasbonController::class, 'destroykasbon'])->name('penjualan.destroykasbon');
+
         Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
         Route::resource('/kategori', KategoriController::class);
 
@@ -71,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/member/cetak-member', [MemberController::class, 'cetakMember'])->name('member.cetak_member');
         Route::resource('/member', MemberController::class);
 
-       
+
         Route::get('/transaksi/baru', [PenjualanController::class, 'create'])->name('transaksi.baru');
         Route::post('/transaksi/simpan', [PenjualanController::class, 'store'])->name('transaksi.simpan');
         Route::get('/transaksi/selesai', [PenjualanController::class, 'selesai'])->name('transaksi.selesai');
@@ -96,7 +103,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/setting/first', [SettingController::class, 'show'])->name('setting.show');
         Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     });
- 
+
     Route::group(['middleware' => 'level:1,0'], function () {
         Route::get('/profil', [UserController::class, 'profil'])->name('user.profil');
         Route::post('/profil', [UserController::class, 'updateProfil'])->name('user.update_profil');
