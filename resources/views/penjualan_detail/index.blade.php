@@ -45,7 +45,7 @@
                     <form class="form-produk">
                         @csrf
                         <div class="form-group row">
-                            <label for="kode_produk" class="col-lg-2">Kode Produk</label>
+                            <label for="kode_produk" class="col-lg-3">Kode Produk</label>
                             <div class="col-lg-5">
                                 <div class="input-group">
                                     <input type="hidden" name="id_penjualan" id="id_penjualan" value="{{ $id_penjualan }}">
@@ -94,9 +94,9 @@
                                         <input type="text" id="totalrp" class="form-control" readonly>
                                     </div>
                                 </div>
-                            </div>
+                            
                             <div class="form-group row">
-                                <label for="" class="col-lg-2 control-label">Pembelian</label>
+                                <label for="" class="col-lg-3 control-label">Pembelian</label>
                                 <div class="col-lg-8  border border-primary">
                                     <select name="" id="" class="form-control">
                                         <option value="">kasbon</option>
@@ -104,7 +104,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
                                 <div class="form-group row">
                                     <label for="diskon" class="col-lg-3 control-label">Diskon</label>
                                     <div class="col-lg-8">
